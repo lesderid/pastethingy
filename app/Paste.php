@@ -19,7 +19,7 @@ class Paste extends Model
 		return $this->deletion !== null;
 	}
 
-	public function delete($reason, $deleted_by)
+	public function soft_delete($reason, $deleted_by)
 	{
 		if($this->isDeleted())
 		{

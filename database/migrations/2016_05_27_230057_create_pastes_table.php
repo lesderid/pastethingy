@@ -16,7 +16,7 @@ class CreatePastesTable extends Migration
 			$table->char('id', 6);
 			$table->string('language');
 			$table->timestamp('created_at');
-			$table->timestamp('expires_at');
+			$table->timestamp('expires_at')->nullable();
 
 			$table->primary('id');
         });
