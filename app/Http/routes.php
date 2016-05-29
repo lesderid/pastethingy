@@ -15,4 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/paste', 'PasteController@create');
+
 Route::get('/paste/{paste}', 'PasteController@view');

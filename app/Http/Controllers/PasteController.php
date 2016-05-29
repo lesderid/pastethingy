@@ -9,9 +9,32 @@ use App\Http\Requests;
 use App\Paste;
 
 use Pygmentize\Pygmentize;
+use Carbon\Carbon;
 
 class PasteController extends Controller
 {
+	public function create(Request $request)
+	{
+		//TODO: Input validation
+
+		$paste = new Paste;
+		$paste->id = Paste::create_id();
+		$paste->created_at = $request->input('available_at', Carbon::now());
+		$paste->expires_at = $request->input('expires_at', null);
+		$paste->language = $request->input('language', 'text');
+		$paste->save();
+		$paste->content = $request->input('content');
+
+		if($request->input('redirect',false))
+		{
+			return redirect(url("/paste/$paste->id"));
+		}
+		else
+		{
+			return response(url("/paste/$paste->id"))->header('Content-Type', 'text/plain');
+		}
+	}
+
 	public function view(Request $request, Paste $paste)
 	{
 		$format = $request->input('format', 'html'); //TODO: Use HTTP content negotiation for the default format
@@ -28,6 +51,10 @@ class PasteController extends Controller
 				return $this->view_latex($paste);
 			case 'png':
 				return $this->view_png($paste);
+			case 'terminal':
+				return $this->view_terminal($paste);
+			case 'terminal256':
+				return $this->view_terminal256($paste);
 			default:
 				break; //TODO: Throw an exception
 		}
@@ -89,6 +116,52 @@ class PasteController extends Controller
 		else
 		{
 			return response($paste->content)->header('Content-Type', 'text/plain');
+		}
+	}
+	
+	private function view_terminal(Paste $paste)
+	{
+		//TODO: More informative messages
+		if($paste->deleted)
+		{
+			response('This paste was deleted.')->header('Content-Type', 'text/plain');	
+		}
+		else if($paste->is_future_paste)
+		{
+			response('This paste is not available yet.')->header('Content-Type', 'text/plain');	
+		}
+		else if($paste->has_expired)
+		{
+			response('This paste has expired.')->header('Content-Type', 'text/plain');	
+		}
+		else
+		{
+			$content = Pygmentize::highlight($paste->content, $paste->language, "utf-8", "terminal");
+
+			return response($content)->header('Content-Type', 'text/plain');
+		}
+	}
+
+	private function view_terminal256(Paste $paste)
+	{
+		//TODO: More informative messages
+		if($paste->deleted)
+		{
+			response('This paste was deleted.')->header('Content-Type', 'text/plain');	
+		}
+		else if($paste->is_future_paste)
+		{
+			response('This paste is not available yet.')->header('Content-Type', 'text/plain');	
+		}
+		else if($paste->has_expired)
+		{
+			response('This paste has expired.')->header('Content-Type', 'text/plain');	
+		}
+		else
+		{
+			$content = Pygmentize::highlight($paste->content, $paste->language, "utf-8", "terminal256");
+
+			return response($content)->header('Content-Type', 'text/plain');
 		}
 	}
 

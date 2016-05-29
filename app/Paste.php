@@ -12,6 +12,21 @@ class Paste extends Model
 	public $incrementing = false;
 	public $timestamps = false;
 
+	public static function create_id()
+	{
+		//TODO: Check if id is unique
+
+		$characters = 'abcdefghijklmnopqrstuvwxyz';
+
+		$id = '';
+		for($i = 0; $i < 6; $i++) //TODO: Make id length configurable (?)
+		{
+			$id .= $characters[rand(0, strlen($characters) -1)];
+		}
+
+		return $id;
+	}
+
 	public function deletion()
 	{
 		return $this->hasOne(Deletion::class);
@@ -40,7 +55,7 @@ class Paste extends Model
 		{
 			Storage::disk('ephemeral')->delete($this->id);
 		}
-	}	
+	}
 
 	public function getDeletedAttribute()
 	{
