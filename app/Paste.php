@@ -57,6 +57,11 @@ class Paste extends Model
 		return $this->expires && $this->expires_at < Carbon::now();
 	}
 
+	public function getIsFuturePasteAttribute()
+	{
+		return $this->created_at > Carbon::now();
+	}
+
 	public function getContentAttribute()
 	{
 		if($this->deleted)
