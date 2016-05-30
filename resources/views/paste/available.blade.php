@@ -3,22 +3,14 @@
     <head>
         <title>{{ $id }} &middot; pastethingy</title>
 
-		<link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
-		<link href='https://fonts.googleapis.com/css?family=Fira+Mono|Roboto+Mono:400,300' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Roboto+Mono:400,300' rel='stylesheet' type='text/css'>
 
 		<style>
 			/* how do I CSS */		
 
 			html, body {
-				height: 100%;
 				margin: 0 auto;
 				font-family: 'Roboto Mono';
-			}
-
-			body {
-				width: 99%;
-				display: flex;
-				flex-flow: column;
 			}
 
 			header {
@@ -26,7 +18,6 @@
 				font-family: 'Roboto Mono';
 				font-weight: 300;
 				font-size: 12px;
-				margin-bottom: 5px;
 				user-select: none;
 				-webkit-user-select: none;
 			}
@@ -34,13 +25,32 @@
 			pre {
 				margin: 0 0;
 				white-space: pre-wrap;
+				font-family: 'Roboto Mono';
+				font-size: 10pt;
+				font-weight: 400;
 			}
 
 			section {
 				padding: 5px 5px;
-				margin: 3px 3px;
+				margin: 10px 10px;
 				border: 1px solid #ccc;
+				font-family: 'Roboto Mono';
+				font-weight: 400;
 			}
+
+			footer {
+				display: flex;
+				justify-content: center;
+			}
+
+			a {
+				display: inline-block;
+				align-self: flex-end;
+				font-weight: 300;
+				color: #555;
+				margin-bottom: 0px;
+			}
+
 		</style>
 
 		<link href="/pygments.css" rel="stylesheet">
@@ -56,5 +66,10 @@
 		<section>
 			{!! $content !!}
 		</section>
+		<footer>
+			@foreach(array('json', 'terminal', 'terminal256', 'png', 'latex', 'irc') as $format)
+				<a href="?format={{$format}}">{{ $format }}</a>&nbsp;
+			@endforeach
+		</footer>
 	</body>
 </html>
