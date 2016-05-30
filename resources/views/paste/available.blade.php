@@ -27,6 +27,8 @@
 				font-weight: 300;
 				font-size: 12px;
 				margin-bottom: 5px;
+				user-select: none;
+				-webkit-user-select: none;
 			}
 			
 			pre {
@@ -45,7 +47,11 @@
     </head>
     <body>
 		<header>
-			{{ $id }} (language: {{ $language }}, expires at: {{ $expires_at }} UTC)
+@if($expires_at !== null)
+			{{ $id }} ({{ $language }}, expires at: {{ $expires_at }} UTC)
+@else
+			{{ $id }} ({{ $language }}, doesn't expire)
+@endif
 		</header>
 		<section>
 			{!! $content !!}
