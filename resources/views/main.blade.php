@@ -149,14 +149,14 @@
 				</form>
 			</section>
 			<footer>
-			<div class="footer">
-				@if($js)
-					<a href="/">No JS version</a>
-				@else
-					<a href="/?js=1">Tab key support (requires JS)</a>
-				@endif
-				<p>&middot; Dates and times are UTC.</p>
-			</div>
+				<div class="footer"> {{-- TODO: Fix this hack --}}
+					@if($js)
+						<a href="/">No JS version</a>
+					@else
+						<a href="/?js=1">Tab key support (requires JS)</a>
+					@endif
+					<p>&middot; Dates and times are UTC.</p>
+				</div>
 			</footer>
 	</body>
 </html>

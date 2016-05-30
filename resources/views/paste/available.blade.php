@@ -3,46 +3,52 @@
     <head>
         <title>{{ $id }} &middot; pastethingy</title>
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
+		<link href='https://fonts.googleapis.com/css?family=Fira+Mono|Roboto+Mono:400,300' rel='stylesheet' type='text/css'>
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+		<style>
+			/* how do I CSS */		
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+			html, body {
+				height: 100%;
+				margin: 0 auto;
+				font-family: 'Roboto Mono';
+			}
 
-            .container {
-                display: table-cell;
-            }
+			body {
+				width: 99%;
+				display: flex;
+				flex-flow: column;
+			}
 
-            .content {
-                display: inline-block;
-            }
+			header {
+				text-align: center;
+				font-family: 'Roboto Mono';
+				font-weight: 300;
+				font-size: 12px;
+				margin-bottom: 5px;
+			}
+			
+			pre {
+				margin: 0 0;
+				white-space: pre-wrap;
+			}
 
-            .title {
-                text-align: center;
-                font-size: 96px;
-            }
+			section {
+				padding: 5px 5px;
+				margin: 3px 3px;
+				border: 1px solid #ccc;
+			}
 		</style>
 
 		<link href="/pygments.css" rel="stylesheet">
     </head>
     <body>
-        <div class="container">
-            <div class="content">
-				<div class="title">pastethingy</div>
-				<div class="paste">
-				{!! $content !!}
-				</div>
-            </div>
-        </div>
-    </body>
+		<header>
+			{{ $id }} (language: {{ $language }}, expires at: {{ $expires_at }} UTC)
+		</header>
+		<section>
+			{!! $content !!}
+		</section>
+	</body>
 </html>
