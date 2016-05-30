@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,8 +13,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function (Request $request) {
+    return view('main', ['js' => $request->input('js', false)]);
 });
 
 Route::post('/paste', 'PasteController@create');

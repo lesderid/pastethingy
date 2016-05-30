@@ -10,6 +10,7 @@ use App\Paste;
 
 use Pygmentize\Pygmentize;
 use Carbon\Carbon;
+use Carbon\CarbonInterval;
 
 class PasteController extends Controller
 {
@@ -20,7 +21,7 @@ class PasteController extends Controller
 		$paste = new Paste;
 		$paste->id = Paste::create_id();
 		$paste->created_at = $request->input('available_at', Carbon::now());
-		$paste->expires_at = $request->input('expires_at', null);
+		$paste->expires_at = $this->calculate_expiry($request->input('expire_after', null), $paste->created_at);
 		$paste->language = $request->input('language', 'text');
 		$paste->save();
 		$paste->content = $request->input('content');
@@ -32,6 +33,18 @@ class PasteController extends Controller
 		else
 		{
 			return response(url("/paste/$paste->id"))->header('Content-Type', 'text/plain');
+		}
+	}
+
+	private static function calculate_expiry($expire_after, $available_at)
+	{
+		if($expire_after === null || $expire_after === "never")
+		{
+			return null;
+		}
+		else
+		{
+			return Carbon::parse($available_at)->copy()->addSeconds((int)$expire_after);
 		}
 	}
 
@@ -53,6 +66,8 @@ class PasteController extends Controller
 				return $this->view_png($paste);
 			case 'terminal':
 				return $this->view_terminal($paste);
+			case 'irc':
+				return $this->view_irc($paste);
 			case 'terminal256':
 				return $this->view_terminal256($paste);
 			default:
@@ -160,6 +175,29 @@ class PasteController extends Controller
 		else
 		{
 			$content = Pygmentize::highlight($paste->content, $paste->language, "utf-8", "terminal256");
+
+			return response($content)->header('Content-Type', 'text/plain');
+		}
+	}
+
+	private function view_irc(Paste $paste)
+	{
+		//TODO: More informative messages
+		if($paste->deleted)
+		{
+			response('This paste was deleted.')->header('Content-Type', 'text/plain');	
+		}
+		else if($paste->is_future_paste)
+		{
+			response('This paste is not available yet.')->header('Content-Type', 'text/plain');	
+		}
+		else if($paste->has_expired)
+		{
+			response('This paste has expired.')->header('Content-Type', 'text/plain');	
+		}
+		else
+		{
+			$content = Pygmentize::highlight($paste->content, $paste->language, "utf-8", "irc");
 
 			return response($content)->header('Content-Type', 'text/plain');
 		}

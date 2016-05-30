@@ -77,6 +77,11 @@ class Paste extends Model
 		return $this->created_at > Carbon::now();
 	}
 
+	public function getIdAttribute($value)
+	{
+		return trim($value);
+	}
+
 	public function getContentAttribute()
 	{
 		if($this->deleted)
