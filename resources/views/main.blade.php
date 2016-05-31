@@ -142,7 +142,7 @@
 								<option value="python3">Python 3</option>
 								<option value="sql">SQL</option>
 								<option value="postgresql">SQL (PostgreSQL dialect)</option>
-								<option value="mysql">SQL (PostgreSQL dialect)</option>
+								<option value="mysql">SQL (MySQL dialect)</option>
 								<option value="rust">Rust</option>
 								<option value="swift">Swift</option>
 								<option value="tex">TeX/LaTeX</option>
