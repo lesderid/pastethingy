@@ -69,7 +69,7 @@
 			{!! $content !!}
 		</section>
 		<footer>
-			@foreach(array('json', 'terminal', 'terminal256', 'png', 'latex', 'irc') as $format)
+			@foreach(array('raw', 'json', 'terminal', 'terminal256', 'png', 'latex', 'irc') as $format)
 				<a href="?format={{$format}}">{{ $format }}</a>&nbsp;
 			@endforeach
 		</footer>
