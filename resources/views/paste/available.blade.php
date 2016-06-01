@@ -41,6 +41,8 @@
 			footer {
 				display: flex;
 				justify-content: center;
+				user-select: none;
+				-webkit-user-select: none;
 			}
 
 			a {
