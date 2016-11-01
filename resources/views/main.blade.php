@@ -147,6 +147,7 @@
 								<option value="swift">Swift</option>
 								<option value="tex">TeX/LaTeX</option>
 								<option value="vim">VimL</option>
+								<option value="vbnet">Visual Basic .NET</option>
 								<option value="xml">XML</option>
 								<option value="yaml">YAML</option>
 							</select>
