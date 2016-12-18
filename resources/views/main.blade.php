@@ -44,7 +44,7 @@
 			section, form {
 				height: 100%;
 				display: flex;
-				flex-direction: column; 
+				flex-direction: column;
 			}
 
 			input, select, textarea, div, label {
@@ -191,6 +191,8 @@
 						<a href="/?js=1">Tab key support (requires JS)</a>
 					@endif
 					<p>&middot; <a href="{{ config('app.repo') }}">Source code</a></p>
+					<p>&middot; <a href="mailto:{{ config('app.abusecontact') }}">Report abuse</a></p>
+					<p>&middot; <a href="{{ config('app.parenturl') }}">{{ config('app.parentname') }}</a></p>
 					<p>&middot; Dates and times are UTC.</p>
 				</div>
 			</footer>
