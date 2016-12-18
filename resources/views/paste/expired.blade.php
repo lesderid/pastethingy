@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{ $id }} &middot; pastethingy</title>
+        <title>{{ $id }} &middot; {{ config('app.name') }}</title>
 
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Mono:100' rel='stylesheet' type='text/css'>
 

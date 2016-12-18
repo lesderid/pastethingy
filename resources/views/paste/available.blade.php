@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{ $id }} &middot; pastethingy</title>
+        <title>{{ $id }} &middot; {{ config('app.name') }}</title>
 
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Mono:400,300' rel='stylesheet' type='text/css'>
 
@@ -21,7 +21,7 @@
 				user-select: none;
 				-webkit-user-select: none;
 			}
-			
+
 			pre {
 				margin: 0 0;
 				white-space: pre-wrap;
