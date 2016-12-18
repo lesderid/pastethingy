@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>pastethingy</title>
+		<title>{{ config('app.name') }}</title>
 
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Mono:400,300' rel='stylesheet' type='text/css'>
 
 		<style>
-			/* how do I CSS */		
+			/* how do I CSS */
 
 			html, body {
 				height: 100%;
@@ -57,7 +57,7 @@
 				flex-wrap: wrap;
 				margin: 0 0;
 			}
-			
+
 			label {
 				font-size: 12px;
 				font-weight: 400;
@@ -80,16 +80,16 @@
 						if(e.keyCode === 9) { //tab
 							var start = this.selectionStart;
 							var end = this.selectionEnd;
-				
+
 							var target = e.target;
 							var value = target.value;
-				
+
 							target.value = value.substring(0, start)
 								+ "\t"
 								+ value.substring(end);
-				
+
 							this.selectionStart = this.selectionEnd = start + 1;
-				
+
 							e.preventDefault();
 						}
 					},false);
@@ -98,7 +98,7 @@
 		@endif
 	</head>
 	<body>
-			<header>pastethingy</header>
+			<header>{{ config('app.name') }}</header>
 
 			<section>
 				<form action="/paste" method="post">
@@ -190,6 +190,7 @@
 					@else
 						<a href="/?js=1">Tab key support (requires JS)</a>
 					@endif
+					<p>&middot; <a href="{{ config('app.repo') }}">Source code</a></p>
 					<p>&middot; Dates and times are UTC.</p>
 				</div>
 			</footer>

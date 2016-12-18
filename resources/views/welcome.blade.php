@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">pastethingy</div>
+                <div class="title">{{ config('app.name') }}</div>
             </div>
         </div>
     </body>
