@@ -138,6 +138,7 @@
 								<option value="perl">Perl</option>
 								<option value="perl6">Perl 6</option>
 								<option value="php">PHP</option>
+								<option value="powershell">PowerShell</option>
 								<option value="prolog">Prolog</option>
 								<option value="python">Python 2</option>
 								<option value="python3">Python 3</option>
