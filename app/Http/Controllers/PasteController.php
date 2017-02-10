@@ -50,7 +50,16 @@ class PasteController extends Controller
 
 	public function view(Request $request, Paste $paste)
 	{
-		$format = $request->input('format', 'html'); //TODO: Use HTTP content negotiation for the default format
+		//TODO: Use HTTP content negotiation for the default format
+		$userAgent = $request->header('User-Agent');
+		if(substr($userAgent, 0, 4) == 'curl')
+		{
+			$format = $request->input('format', 'raw'); //default to raw format for curl
+		}
+		else
+		{
+			$format = $request->input('format', 'html'); //default to html format for other user agents
+		}
 
 		switch($format)
 		{
@@ -59,7 +68,7 @@ class PasteController extends Controller
 			case 'raw':
 				return $this->view_raw($paste);
 			case 'json':
-				return $this->view_json($paste); 
+				return $this->view_json($paste);
 			case 'latex':
 				return $this->view_latex($paste);
 			case 'png':
