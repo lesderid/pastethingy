@@ -117,6 +117,7 @@
 								<option value="c">C</option>
 								<option value="cpp">C++</option>
 								<option value="csharp">C#</option>
+								<option value="crystal">Crystal</option>
 								<option value="css">CSS</option>
 								<option value="d">D</option>
 								<option value="diff">Diff/Patch</option>
