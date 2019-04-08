@@ -136,6 +136,7 @@
 								<option value="lua">Lua</option>
 								<option value="makefile">Makefile</option>
 								<option value="md">Markdown</option>
+								<option value="nasm">NASM (x86 Intel syntax)</option>
 								<option value="nginx">Nginx configuration file</option>
 								<option value="perl">Perl</option>
 								<option value="perl6">Perl 6</option>
